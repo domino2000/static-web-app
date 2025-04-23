@@ -10,7 +10,7 @@ interface ApiResponse {
   template: `
     <div class="app-container">
       <mat-toolbar color="primary" class="app-toolbar">
-        <span>API Dashboard</span>
+        <span>My playground</span>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button aria-label="Refresh all data" (click)="refreshAllData()">
           <mat-icon>refresh</mat-icon>
