@@ -4,6 +4,12 @@ app.http('message', {
     methods: ['GET', 'POST'],
     authLevel: 'anonymous',
     handler: async (request, context) => {
-        return { body: `Hello, from the API!` };
+        context.log('HTTP trigger function processed a request.');
+        
+        // Return a proper JSON response
+        return {
+            status: 200,
+            jsonBody: { text: "Hello, from the API!" }
+        };
     }
 });
