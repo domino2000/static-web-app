@@ -28,6 +28,10 @@ interface ApiResponse {
               <mat-card-title>API #1</mat-card-title>
               <mat-card-subtitle>Message API</mat-card-subtitle>
             </mat-card-header>
+            <div class="api-description">
+              <mat-icon class="description-icon">info</mat-icon>
+              <p>Simple Azure Function that returns a welcome message and tracks refresh counts. Shows a special message every 10 refreshes!</p>
+            </div>
             <mat-card-content>
               <div *ngIf="api1Loading" class="spinner-container">
                 <mat-spinner diameter="40"></mat-spinner>
@@ -54,20 +58,20 @@ interface ApiResponse {
               <mat-card-title>API #2</mat-card-title>
               <mat-card-subtitle>Future API</mat-card-subtitle>
             </mat-card-header>
+            <div class="api-description">
+              <mat-icon class="description-icon">construction</mat-icon>
+              <p>Future integration for data processing API. Will provide real-time analytics and transformations of your incoming data.</p>
+            </div>
             <mat-card-content>
               <div *ngIf="api2Loading" class="spinner-container">
                 <mat-spinner diameter="40"></mat-spinner>
               </div>
               <div *ngIf="!api2Loading" class="api-content">
                 <p>{{ api2Message }}</p>
-                <p class="refresh-counter">Refresh count: {{ api2RefreshCounter }}</p>
-                <p *ngIf="api2ShowSpecialMessage" class="special-message">
-                  {{ specialMessage }}
-                </p>
               </div>
             </mat-card-content>
             <mat-card-actions align="end">
-              <button mat-button color="primary" (click)="fetchApi2Data()">REFRESH</button>
+              <button mat-button color="primary" disabled>COMING SOON</button>
             </mat-card-actions>
           </mat-card>
           
@@ -80,20 +84,20 @@ interface ApiResponse {
               <mat-card-title>API #3</mat-card-title>
               <mat-card-subtitle>Future API</mat-card-subtitle>
             </mat-card-header>
+            <div class="api-description">
+              <mat-icon class="description-icon">schedule</mat-icon>
+              <p>Planned integration with external data sources. Will aggregate information from third-party services into a unified dashboard.</p>
+            </div>
             <mat-card-content>
               <div *ngIf="api3Loading" class="spinner-container">
                 <mat-spinner diameter="40"></mat-spinner>
               </div>
               <div *ngIf="!api3Loading" class="api-content">
                 <p>{{ api3Message }}</p>
-                <p class="refresh-counter">Refresh count: {{ api3RefreshCounter }}</p>
-                <p *ngIf="api3ShowSpecialMessage" class="special-message">
-                  {{ specialMessage }}
-                </p>
               </div>
             </mat-card-content>
             <mat-card-actions align="end">
-              <button mat-button color="primary" (click)="fetchApi3Data()">REFRESH</button>
+              <button mat-button color="primary" disabled>COMING SOON</button>
             </mat-card-actions>
           </mat-card>
         </div>
@@ -151,6 +155,28 @@ interface ApiResponse {
       justify-content: center;
       background-color: #f0f4f8;
       border-radius: 50%;
+    }
+    
+    .api-description {
+      background-color: #f9f9f9;
+      border-radius: 4px;
+      padding: 12px 16px;
+      margin: 0 16px;
+      display: flex;
+      align-items: flex-start;
+      border-left: 4px solid #3f51b5;
+    }
+    
+    .description-icon {
+      color: #3f51b5;
+      margin-right: 8px;
+    }
+    
+    .api-description p {
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin: 0;
+      color: #555;
     }
     
     .api-content {
@@ -215,14 +241,10 @@ export class SwaAppComponent implements OnInit {
   // API 2 properties
   public api2Message: string = 'Ready for your second API integration';
   public api2Loading: boolean = false;
-  public api2RefreshCounter: number = 0;
-  public api2ShowSpecialMessage: boolean = false;
   
   // API 3 properties
   public api3Message: string = 'Ready for your third API integration';
   public api3Loading: boolean = false;
-  public api3RefreshCounter: number = 0;
-  public api3ShowSpecialMessage: boolean = false;
 
   constructor(private httpClient: HttpClient) {}
   
@@ -245,7 +267,8 @@ export class SwaAppComponent implements OnInit {
         console.log('API 1 response:', response);
         // Add the refresh count to the message
         const baseMessage = response.text || 'No message received';
-        this.api1Message = `${baseMessage} (Refresh #${this.api1RefreshCounter})`;
+        this.api1Message = `${baseMessage}`;
+        //this.api1Message = `${baseMessage} (Refresh #${this.api1RefreshCounter})`;
         this.api1Loading = false;
       },
       error: (error) => {
@@ -256,41 +279,8 @@ export class SwaAppComponent implements OnInit {
     });
   }
   
-  fetchApi2Data(): void {
-    this.api2Loading = true;
-    
-    // Increment the counter each time fetchApi2Data is called
-    this.api2RefreshCounter++;
-    
-    // Check if we should show the special message (every 10 counts)
-    this.api2ShowSpecialMessage = this.api2RefreshCounter % 10 === 0 && this.api2RefreshCounter > 0;
-    
-    // Simulate API call with setTimeout
-    setTimeout(() => {
-      this.api2Message = `Future API 2 data will appear here (Refresh #${this.api2RefreshCounter})`;
-      this.api2Loading = false;
-    }, 1000);
-  }
-  
-  fetchApi3Data(): void {
-    this.api3Loading = true;
-    
-    // Increment the counter each time fetchApi3Data is called
-    this.api3RefreshCounter++;
-    
-    // Check if we should show the special message (every 10 counts)
-    this.api3ShowSpecialMessage = this.api3RefreshCounter % 10 === 0 && this.api3RefreshCounter > 0;
-    
-    // Simulate API call with setTimeout
-    setTimeout(() => {
-      this.api3Message = `Future API 3 data will appear here (Refresh #${this.api3RefreshCounter})`;
-      this.api3Loading = false;
-    }, 1000);
-  }
-  
   refreshAllData(): void {
     this.fetchApi1Data();
-    this.fetchApi2Data();
-    this.fetchApi3Data();
+    // The other APIs are not implemented yet
   }
 }
