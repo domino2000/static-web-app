@@ -5,7 +5,6 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-root',
   template: `<div>{{message}}</div>`,
   styles: [],
-  // @ts-ignore - Force non-standalone component
   standalone: false
 })
 export class SwaAppComponent implements OnInit {

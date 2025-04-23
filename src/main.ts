@@ -1,10 +1,9 @@
-import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { SwaAppModule } from './app/swa-app.module';
 import { environment } from './environments/environment';
 
 if (environment.production) {
-  enableProdMode();
+  import('@angular/core').then(core => core.enableProdMode());
 }
 
 platformBrowserDynamic().bootstrapModule(SwaAppModule)
