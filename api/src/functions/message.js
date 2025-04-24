@@ -9,7 +9,7 @@ app.http('message', {
         // Return a proper JSON response
         return {
             status: 200,
-            jsonBody: { text: "Hello, from the API!" }
+            jsonBody: { text: "Witaj! Funkcja działa." }
         };
     }
 });

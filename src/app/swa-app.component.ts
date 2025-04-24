@@ -25,9 +25,9 @@ interface CountryInfo {
   template: `
     <div class="app-container">
       <mat-toolbar color="primary" class="app-toolbar">
-        <span>My playground</span>
+        <span>Mój plac zabaw</span>
         <span class="toolbar-spacer"></span>
-        <button mat-icon-button aria-label="Refresh all data" (click)="refreshAllData()" class="hidden-button">
+        <button mat-icon-button aria-label="Odśwież wszystkie dane" (click)="refreshAllData()" class="hidden-button">
           <mat-icon>refresh</mat-icon>
         </button>
       </mat-toolbar>
@@ -41,11 +41,11 @@ interface CountryInfo {
                 <mat-icon>cloud</mat-icon>
               </div>
               <mat-card-title>API #1</mat-card-title>
-              <mat-card-subtitle>Message API</mat-card-subtitle>
+              <mat-card-subtitle>API Wiadomości</mat-card-subtitle>
             </mat-card-header>
             <div class="api-description">
               <mat-icon class="description-icon">info</mat-icon>
-              <p>Simple Azure Function that returns a welcome message and tracks refresh counts. Shows a special message every 10 refreshes!</p>
+              <p>Prosta funkcja Azure, która zwraca wiadomość powitalną i śledzi liczbę odświeżeń. Pokazuje specjalną wiadomość co 10 odświeżeń!</p>
             </div>
             <mat-card-content>
               <div *ngIf="api1Loading" class="spinner-container">
@@ -53,7 +53,7 @@ interface CountryInfo {
               </div>
               <div *ngIf="!api1Loading" class="api-content">
                 <p>{{ api1Message }}</p>
-                <p class="refresh-counter">Refresh count: {{ api1RefreshCounter }}</p>
+                <p class="refresh-counter">Liczba odświeżeń: {{ api1RefreshCounter }}</p>
                 <p *ngIf="api1ShowSpecialMessage" class="special-message">
                   {{ specialMessage }}
                 </p>
@@ -61,7 +61,7 @@ interface CountryInfo {
             </mat-card-content>
             <div class="button-spacer"></div>
             <mat-card-actions align="end" class="card-actions">
-              <button mat-button color="primary" (click)="fetchApi1Data()">REFRESH</button>
+              <button mat-button color="primary" (click)="fetchApi1Data()">ODŚWIEŻ</button>
             </mat-card-actions>
           </mat-card>
           
@@ -72,17 +72,17 @@ interface CountryInfo {
                 <mat-icon>public</mat-icon>
               </div>
               <mat-card-title>API #2</mat-card-title>
-              <mat-card-subtitle>Check name origin</mat-card-subtitle>
+              <mat-card-subtitle>Sprawdź pochodzenie imienia</mat-card-subtitle>
             </mat-card-header>
             <div class="api-description">
               <mat-icon class="description-icon">travel_explore</mat-icon>
-              <p>Discover the likely national origins of a name using probability data. Enter any name to see which countries it's most commonly associated with.</p>
+              <p>Odkryj prawdopodobne pochodzenie narodowe imienia. Wprowadź dowolne imię, aby zobaczyć, z którymi krajami jest najczęściej kojarzone.</p>
             </div>
             <mat-card-content>
               <div class="name-input-container">
                 <mat-form-field appearance="outline" class="name-input">
-                  <mat-label>Enter a name</mat-label>
-                  <input matInput [(ngModel)]="nameToCheck" placeholder="e.g. John, Maria, Chen" (keyup.enter)="checkNameOrigin()">
+                  <mat-label>Wprowadź imię</mat-label>
+                  <input matInput [(ngModel)]="nameToCheck" placeholder="np. Jan, Maria, Chen" (keyup.enter)="checkNameOrigin()">
                 </mat-form-field>
               </div>
               
@@ -92,15 +92,15 @@ interface CountryInfo {
               
               <div *ngIf="!api2Loading && nameOriginResult" class="api-content name-results">
                 <div class="result-header">
-                  <h3>Results for "{{ nameOriginResult.name }}"</h3>
+                  <h3>Wyniki dla "{{ nameOriginResult.name }}"</h3>
                   <div class="occurrence">
                     <mat-icon>people</mat-icon>
-                    <span>Found in database {{ nameOriginResult.count }} times</span>
+                    <span>Znaleziono w bazie danych {{ nameOriginResult.count }} razy</span>
                   </div>
                 </div>
                 
                 <div class="country-list">
-                  <h4>Likely country origins:</h4>
+                  <h4>Prawdopodobne kraje pochodzenia:</h4>
                   <div *ngFor="let country of nameOriginResult.countries" class="country-item">
                     <div class="country-flag">{{ getCountryFlag(country.countryId) }}</div>
                     <div class="country-name">{{ getCountryName(country.countryId) }}</div>
@@ -118,7 +118,7 @@ interface CountryInfo {
             </mat-card-content>
             <div class="button-spacer"></div>
             <mat-card-actions align="end" class="card-actions">
-              <button mat-button color="primary" [disabled]="!nameToCheck || api2Loading" (click)="checkNameOrigin()">CHECK</button>
+              <button mat-button color="primary" [disabled]="!nameToCheck || api2Loading" (click)="checkNameOrigin()">SPRAWDŹ</button>
             </mat-card-actions>
           </mat-card>
           
@@ -129,11 +129,11 @@ interface CountryInfo {
                 <mat-icon>data_usage</mat-icon>
               </div>
               <mat-card-title>API #3</mat-card-title>
-              <mat-card-subtitle>Future API</mat-card-subtitle>
+              <mat-card-subtitle>Przyszłe API</mat-card-subtitle>
             </mat-card-header>
             <div class="api-description">
               <mat-icon class="description-icon">schedule</mat-icon>
-              <p>Planned integration with external data sources. Will aggregate information from third-party services into a unified dashboard.</p>
+              <p>Planowana integracja z zewnętrznymi źródłami danych. Będzie agregować informacje z usług zewnętrznych do ujednoliconego panelu.</p>
             </div>
             <mat-card-content>
               <div *ngIf="api3Loading" class="spinner-container">
@@ -145,14 +145,14 @@ interface CountryInfo {
             </mat-card-content>
             <div class="button-spacer"></div>
             <mat-card-actions align="end" class="card-actions">
-              <button mat-button color="primary" disabled>COMING SOON</button>
+              <button mat-button color="primary" disabled>WKRÓTCE</button>
             </mat-card-actions>
           </mat-card>
         </div>
       </div>
       
       <footer class="app-footer">
-        <p>&copy; {{ currentYear }} API Dashboard - Azure Static Web App</p>
+        <p>&copy; {{ currentYear }} Panel API - Azure Static Web App</p>
       </footer>
     </div>
   `,
@@ -381,10 +381,10 @@ interface CountryInfo {
 })
 export class SwaAppComponent implements OnInit {
   public currentYear: number = new Date().getFullYear();
-  public specialMessage: string = "Keep going! You're on a roll!";
+  public specialMessage: string = "Tak trzymaj! Idzie Ci świetnie!";
   
   // API 1 properties
-  public api1Message: string = 'Click REFRESH to load data from API';
+  public api1Message: string = 'Kliknij ODŚWIEŻ, aby załadować dane z API';
   public api1Loading: boolean = false;
   public api1RefreshCounter: number = 0;
   public api1ShowSpecialMessage: boolean = false;
@@ -396,128 +396,128 @@ export class SwaAppComponent implements OnInit {
   public nameOriginResult: NameOriginResponse | null = null;
   
   // API 3 properties
-  public api3Message: string = 'Ready for your third API integration';
+  public api3Message: string = 'Gotowe na twoją trzecią integrację API';
   public api3Loading: boolean = false;
   
-  // Country mapping for display
+  // Country mapping for display - translated to Polish
   private countryMap: { [key: string]: CountryInfo } = {
-    'US': { code: 'US', name: 'United States', flag: '🇺🇸' },
-    'GB': { code: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
-    'DE': { code: 'DE', name: 'Germany', flag: '🇩🇪' },
-    'FR': { code: 'FR', name: 'France', flag: '🇫🇷' },
-    'IT': { code: 'IT', name: 'Italy', flag: '🇮🇹' },
-    'ES': { code: 'ES', name: 'Spain', flag: '🇪🇸' },
-    'CA': { code: 'CA', name: 'Canada', flag: '🇨🇦' },
+    'US': { code: 'US', name: 'Stany Zjednoczone', flag: '🇺🇸' },
+    'GB': { code: 'GB', name: 'Wielka Brytania', flag: '🇬🇧' },
+    'DE': { code: 'DE', name: 'Niemcy', flag: '🇩🇪' },
+    'FR': { code: 'FR', name: 'Francja', flag: '🇫🇷' },
+    'IT': { code: 'IT', name: 'Włochy', flag: '🇮🇹' },
+    'ES': { code: 'ES', name: 'Hiszpania', flag: '🇪🇸' },
+    'CA': { code: 'CA', name: 'Kanada', flag: '🇨🇦' },
     'AU': { code: 'AU', name: 'Australia', flag: '🇦🇺' },
-    'JP': { code: 'JP', name: 'Japan', flag: '🇯🇵' },
-    'CN': { code: 'CN', name: 'China', flag: '🇨🇳' },
-    'IN': { code: 'IN', name: 'India', flag: '🇮🇳' },
-    'BR': { code: 'BR', name: 'Brazil', flag: '🇧🇷' },
-    'RU': { code: 'RU', name: 'Russia', flag: '🇷🇺' },
-    'MX': { code: 'MX', name: 'Mexico', flag: '🇲🇽' },
-    'ID': { code: 'ID', name: 'Indonesia', flag: '🇮🇩' },
+    'JP': { code: 'JP', name: 'Japonia', flag: '🇯🇵' },
+    'CN': { code: 'CN', name: 'Chiny', flag: '🇨🇳' },
+    'IN': { code: 'IN', name: 'Indie', flag: '🇮🇳' },
+    'BR': { code: 'BR', name: 'Brazylia', flag: '🇧🇷' },
+    'RU': { code: 'RU', name: 'Rosja', flag: '🇷🇺' },
+    'MX': { code: 'MX', name: 'Meksyk', flag: '🇲🇽' },
+    'ID': { code: 'ID', name: 'Indonezja', flag: '🇮🇩' },
     'NG': { code: 'NG', name: 'Nigeria', flag: '🇳🇬' },
     'PK': { code: 'PK', name: 'Pakistan', flag: '🇵🇰' },
-    'BD': { code: 'BD', name: 'Bangladesh', flag: '🇧🇩' },
-    'RO': { code: 'RO', name: 'Romania', flag: '🇷🇴' },
-    'PH': { code: 'PH', name: 'Philippines', flag: '🇵🇭' },
+    'BD': { code: 'BD', name: 'Bangladesz', flag: '🇧🇩' },
+    'RO': { code: 'RO', name: 'Rumunia', flag: '🇷🇴' },
+    'PH': { code: 'PH', name: 'Filipiny', flag: '🇵🇭' },
     'NE': { code: 'NE', name: 'Niger', flag: '🇳🇪' },
     'GH': { code: 'GH', name: 'Ghana', flag: '🇬🇭' },
     'NA': { code: 'NA', name: 'Namibia', flag: '🇳🇦' },
-    // Additional country codes
-    'AF': { code: 'AF', name: 'Afghanistan', flag: '🇦🇫' },
+    // Additional country codes with Polish names
+    'AF': { code: 'AF', name: 'Afganistan', flag: '🇦🇫' },
     'AL': { code: 'AL', name: 'Albania', flag: '🇦🇱' },
-    'DZ': { code: 'DZ', name: 'Algeria', flag: '🇩🇿' },
-    'AR': { code: 'AR', name: 'Argentina', flag: '🇦🇷' },
+    'DZ': { code: 'DZ', name: 'Algieria', flag: '🇩🇿' },
+    'AR': { code: 'AR', name: 'Argentyna', flag: '🇦🇷' },
     'AT': { code: 'AT', name: 'Austria', flag: '🇦🇹' },
-    'BY': { code: 'BY', name: 'Belarus', flag: '🇧🇾' },
-    'BE': { code: 'BE', name: 'Belgium', flag: '🇧🇪' },
-    'BO': { code: 'BO', name: 'Bolivia', flag: '🇧🇴' },
-    'BA': { code: 'BA', name: 'Bosnia and Herzegovina', flag: '🇧🇦' },
-    'BG': { code: 'BG', name: 'Bulgaria', flag: '🇧🇬' },
-    'KH': { code: 'KH', name: 'Cambodia', flag: '🇰🇭' },
-    'CM': { code: 'CM', name: 'Cameroon', flag: '🇨🇲' },
+    'BY': { code: 'BY', name: 'Białoruś', flag: '🇧🇾' },
+    'BE': { code: 'BE', name: 'Belgia', flag: '🇧🇪' },
+    'BO': { code: 'BO', name: 'Boliwia', flag: '🇧🇴' },
+    'BA': { code: 'BA', name: 'Bośnia i Hercegowina', flag: '🇧🇦' },
+    'BG': { code: 'BG', name: 'Bułgaria', flag: '🇧🇬' },
+    'KH': { code: 'KH', name: 'Kambodża', flag: '🇰🇭' },
+    'CM': { code: 'CM', name: 'Kamerun', flag: '🇨🇲' },
     'CL': { code: 'CL', name: 'Chile', flag: '🇨🇱' },
-    'CO': { code: 'CO', name: 'Colombia', flag: '🇨🇴' },
-    'CR': { code: 'CR', name: 'Costa Rica', flag: '🇨🇷' },
-    'HR': { code: 'HR', name: 'Croatia', flag: '🇭🇷' },
-    'CU': { code: 'CU', name: 'Cuba', flag: '🇨🇺' },
-    'CY': { code: 'CY', name: 'Cyprus', flag: '🇨🇾' },
-    'CZ': { code: 'CZ', name: 'Czech Republic', flag: '🇨🇿' },
-    'DK': { code: 'DK', name: 'Denmark', flag: '🇩🇰' },
-    'DO': { code: 'DO', name: 'Dominican Republic', flag: '🇩🇴' },
-    'EC': { code: 'EC', name: 'Ecuador', flag: '🇪🇨' },
-    'EG': { code: 'EG', name: 'Egypt', flag: '🇪🇬' },
-    'SV': { code: 'SV', name: 'El Salvador', flag: '🇸🇻' },
+    'CO': { code: 'CO', name: 'Kolumbia', flag: '🇨🇴' },
+    'CR': { code: 'CR', name: 'Kostaryka', flag: '🇨🇷' },
+    'HR': { code: 'HR', name: 'Chorwacja', flag: '🇭🇷' },
+    'CU': { code: 'CU', name: 'Kuba', flag: '🇨🇺' },
+    'CY': { code: 'CY', name: 'Cypr', flag: '🇨🇾' },
+    'CZ': { code: 'CZ', name: 'Czechy', flag: '🇨🇿' },
+    'DK': { code: 'DK', name: 'Dania', flag: '🇩🇰' },
+    'DO': { code: 'DO', name: 'Dominikana', flag: '🇩🇴' },
+    'EC': { code: 'EC', name: 'Ekwador', flag: '🇪🇨' },
+    'EG': { code: 'EG', name: 'Egipt', flag: '🇪🇬' },
+    'SV': { code: 'SV', name: 'Salwador', flag: '🇸🇻' },
     'EE': { code: 'EE', name: 'Estonia', flag: '🇪🇪' },
-    'ET': { code: 'ET', name: 'Ethiopia', flag: '🇪🇹' },
-    'FI': { code: 'FI', name: 'Finland', flag: '🇫🇮' },
-    'GE': { code: 'GE', name: 'Georgia', flag: '🇬🇪' },
-    'GR': { code: 'GR', name: 'Greece', flag: '🇬🇷' },
-    'GT': { code: 'GT', name: 'Guatemala', flag: '🇬🇹' },
+    'ET': { code: 'ET', name: 'Etiopia', flag: '🇪🇹' },
+    'FI': { code: 'FI', name: 'Finlandia', flag: '🇫🇮' },
+    'GE': { code: 'GE', name: 'Gruzja', flag: '🇬🇪' },
+    'GR': { code: 'GR', name: 'Grecja', flag: '🇬🇷' },
+    'GT': { code: 'GT', name: 'Gwatemala', flag: '🇬🇹' },
     'HT': { code: 'HT', name: 'Haiti', flag: '🇭🇹' },
     'HN': { code: 'HN', name: 'Honduras', flag: '🇭🇳' },
-    'HK': { code: 'HK', name: 'Hong Kong', flag: '🇭🇰' },
-    'HU': { code: 'HU', name: 'Hungary', flag: '🇭🇺' },
-    'IS': { code: 'IS', name: 'Iceland', flag: '🇮🇸' },
+    'HK': { code: 'HK', name: 'Hongkong', flag: '🇭🇰' },
+    'HU': { code: 'HU', name: 'Węgry', flag: '🇭🇺' },
+    'IS': { code: 'IS', name: 'Islandia', flag: '🇮🇸' },
     'IR': { code: 'IR', name: 'Iran', flag: '🇮🇷' },
-    'IQ': { code: 'IQ', name: 'Iraq', flag: '🇮🇶' },
-    'IE': { code: 'IE', name: 'Ireland', flag: '🇮🇪' },
-    'IL': { code: 'IL', name: 'Israel', flag: '🇮🇱' },
-    'JM': { code: 'JM', name: 'Jamaica', flag: '🇯🇲' },
-    'JO': { code: 'JO', name: 'Jordan', flag: '🇯🇴' },
-    'KZ': { code: 'KZ', name: 'Kazakhstan', flag: '🇰🇿' },
-    'KE': { code: 'KE', name: 'Kenya', flag: '🇰🇪' },
-    'KR': { code: 'KR', name: 'South Korea', flag: '🇰🇷' },
-    'KW': { code: 'KW', name: 'Kuwait', flag: '🇰🇼' },
-    'LV': { code: 'LV', name: 'Latvia', flag: '🇱🇻' },
-    'LB': { code: 'LB', name: 'Lebanon', flag: '🇱🇧' },
-    'LY': { code: 'LY', name: 'Libya', flag: '🇱🇾' },
-    'LT': { code: 'LT', name: 'Lithuania', flag: '🇱🇹' },
-    'LU': { code: 'LU', name: 'Luxembourg', flag: '🇱🇺' },
-    'MY': { code: 'MY', name: 'Malaysia', flag: '🇲🇾' },
+    'IQ': { code: 'IQ', name: 'Irak', flag: '🇮🇶' },
+    'IE': { code: 'IE', name: 'Irlandia', flag: '🇮🇪' },
+    'IL': { code: 'IL', name: 'Izrael', flag: '🇮🇱' },
+    'JM': { code: 'JM', name: 'Jamajka', flag: '🇯🇲' },
+    'JO': { code: 'JO', name: 'Jordania', flag: '🇯🇴' },
+    'KZ': { code: 'KZ', name: 'Kazachstan', flag: '🇰🇿' },
+    'KE': { code: 'KE', name: 'Kenia', flag: '🇰🇪' },
+    'KR': { code: 'KR', name: 'Korea Południowa', flag: '🇰🇷' },
+    'KW': { code: 'KW', name: 'Kuwejt', flag: '🇰🇼' },
+    'LV': { code: 'LV', name: 'Łotwa', flag: '🇱🇻' },
+    'LB': { code: 'LB', name: 'Liban', flag: '🇱🇧' },
+    'LY': { code: 'LY', name: 'Libia', flag: '🇱🇾' },
+    'LT': { code: 'LT', name: 'Litwa', flag: '🇱🇹' },
+    'LU': { code: 'LU', name: 'Luksemburg', flag: '🇱🇺' },
+    'MY': { code: 'MY', name: 'Malezja', flag: '🇲🇾' },
     'ML': { code: 'ML', name: 'Mali', flag: '🇲🇱' },
     'MT': { code: 'MT', name: 'Malta', flag: '🇲🇹' },
-    'MR': { code: 'MR', name: 'Mauritania', flag: '🇲🇷' },
-    'MA': { code: 'MA', name: 'Morocco', flag: '🇲🇦' },
-    'MM': { code: 'MM', name: 'Myanmar', flag: '🇲🇲' },
+    'MR': { code: 'MR', name: 'Mauretania', flag: '🇲🇷' },
+    'MA': { code: 'MA', name: 'Maroko', flag: '🇲🇦' },
+    'MM': { code: 'MM', name: 'Mjanma', flag: '🇲🇲' },
     'NP': { code: 'NP', name: 'Nepal', flag: '🇳🇵' },
-    'NL': { code: 'NL', name: 'Netherlands', flag: '🇳🇱' },
-    'NZ': { code: 'NZ', name: 'New Zealand', flag: '🇳🇿' },
-    'NI': { code: 'NI', name: 'Nicaragua', flag: '🇳🇮' },
-    'NO': { code: 'NO', name: 'Norway', flag: '🇳🇴' },
+    'NL': { code: 'NL', name: 'Holandia', flag: '🇳🇱' },
+    'NZ': { code: 'NZ', name: 'Nowa Zelandia', flag: '🇳🇿' },
+    'NI': { code: 'NI', name: 'Nikaragua', flag: '🇳🇮' },
+    'NO': { code: 'NO', name: 'Norwegia', flag: '🇳🇴' },
     'OM': { code: 'OM', name: 'Oman', flag: '🇴🇲' },
     'PA': { code: 'PA', name: 'Panama', flag: '🇵🇦' },
-    'PY': { code: 'PY', name: 'Paraguay', flag: '🇵🇾' },
+    'PY': { code: 'PY', name: 'Paragwaj', flag: '🇵🇾' },
     'PE': { code: 'PE', name: 'Peru', flag: '🇵🇪' },
-    'PL': { code: 'PL', name: 'Poland', flag: '🇵🇱' },
-    'PT': { code: 'PT', name: 'Portugal', flag: '🇵🇹' },
-    'QA': { code: 'QA', name: 'Qatar', flag: '🇶🇦' },
-    'SA': { code: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' },
+    'PL': { code: 'PL', name: 'Polska', flag: '🇵🇱' },
+    'PT': { code: 'PT', name: 'Portugalia', flag: '🇵🇹' },
+    'QA': { code: 'QA', name: 'Katar', flag: '🇶🇦' },
+    'SA': { code: 'SA', name: 'Arabia Saudyjska', flag: '🇸🇦' },
     'SN': { code: 'SN', name: 'Senegal', flag: '🇸🇳' },
     'RS': { code: 'RS', name: 'Serbia', flag: '🇷🇸' },
-    'SG': { code: 'SG', name: 'Singapore', flag: '🇸🇬' },
-    'SK': { code: 'SK', name: 'Slovakia', flag: '🇸🇰' },
-    'SI': { code: 'SI', name: 'Slovenia', flag: '🇸🇮' },
-    'ZA': { code: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+    'SG': { code: 'SG', name: 'Singapur', flag: '🇸🇬' },
+    'SK': { code: 'SK', name: 'Słowacja', flag: '🇸🇰' },
+    'SI': { code: 'SI', name: 'Słowenia', flag: '🇸🇮' },
+    'ZA': { code: 'ZA', name: 'Republika Południowej Afryki', flag: '🇿🇦' },
     'LK': { code: 'LK', name: 'Sri Lanka', flag: '🇱🇰' },
-    'SE': { code: 'SE', name: 'Sweden', flag: '🇸🇪' },
-    'CH': { code: 'CH', name: 'Switzerland', flag: '🇨🇭' },
+    'SE': { code: 'SE', name: 'Szwecja', flag: '🇸🇪' },
+    'CH': { code: 'CH', name: 'Szwajcaria', flag: '🇨🇭' },
     'SY': { code: 'SY', name: 'Syria', flag: '🇸🇾' },
-    'TW': { code: 'TW', name: 'Taiwan', flag: '🇹🇼' },
-    'TJ': { code: 'TJ', name: 'Tajikistan', flag: '🇹🇯' },
+    'TW': { code: 'TW', name: 'Tajwan', flag: '🇹🇼' },
+    'TJ': { code: 'TJ', name: 'Tadżykistan', flag: '🇹🇯' },
     'TZ': { code: 'TZ', name: 'Tanzania', flag: '🇹🇿' },
-    'TH': { code: 'TH', name: 'Thailand', flag: '🇹🇭' },
-    'TN': { code: 'TN', name: 'Tunisia', flag: '🇹🇳' },
-    'TR': { code: 'TR', name: 'Turkey', flag: '🇹🇷' },
+    'TH': { code: 'TH', name: 'Tajlandia', flag: '🇹🇭' },
+    'TN': { code: 'TN', name: 'Tunezja', flag: '🇹🇳' },
+    'TR': { code: 'TR', name: 'Turcja', flag: '🇹🇷' },
     'UG': { code: 'UG', name: 'Uganda', flag: '🇺🇬' },
-    'UA': { code: 'UA', name: 'Ukraine', flag: '🇺🇦' },
-    'AE': { code: 'AE', name: 'United Arab Emirates', flag: '🇦🇪' },
-    'UY': { code: 'UY', name: 'Uruguay', flag: '🇺🇾' },
+    'UA': { code: 'UA', name: 'Ukraina', flag: '🇺🇦' },
+    'AE': { code: 'AE', name: 'Zjednoczone Emiraty Arabskie', flag: '🇦🇪' },
+    'UY': { code: 'UY', name: 'Urugwaj', flag: '🇺🇾' },
     'UZ': { code: 'UZ', name: 'Uzbekistan', flag: '🇺🇿' },
-    'VE': { code: 'VE', name: 'Venezuela', flag: '🇻🇪' },
-    'VN': { code: 'VN', name: 'Vietnam', flag: '🇻🇳' },
-    'YE': { code: 'YE', name: 'Yemen', flag: '🇾🇪' },
+    'VE': { code: 'VE', name: 'Wenezuela', flag: '🇻🇪' },
+    'VN': { code: 'VN', name: 'Wietnam', flag: '🇻🇳' },
+    'YE': { code: 'YE', name: 'Jemen', flag: '🇾🇪' },
     'ZM': { code: 'ZM', name: 'Zambia', flag: '🇿🇲' },
     'ZW': { code: 'ZW', name: 'Zimbabwe', flag: '🇿🇼' }
   };
@@ -542,14 +542,13 @@ export class SwaAppComponent implements OnInit {
       next: (response) => {
         console.log('API 1 response:', response);
         // Add the refresh count to the message
-        const baseMessage = response.text || 'No message received';
+        const baseMessage = response.text || 'Nie otrzymano wiadomości';
         this.api1Message = `${baseMessage}`;
-        //this.api1Message = `${baseMessage} (Refresh #${this.api1RefreshCounter})`;
         this.api1Loading = false;
       },
       error: (error) => {
         console.error('API 1 error:', error);
-        this.api1Message = `Failed to load message from API (Refresh #${this.api1RefreshCounter})`;
+        this.api1Message = `Nie udało się załadować wiadomości z API (Odświeżenie #${this.api1RefreshCounter})`;
         this.api1Loading = false;
       }
     });
@@ -569,7 +568,7 @@ export class SwaAppComponent implements OnInit {
       },
       error: (error) => {
         console.error('Name origin error:', error);
-        this.api2Message = 'Failed to check name origin. Please try again.';
+        this.api2Message = 'Nie udało się sprawdzić pochodzenia imienia. Spróbuj ponownie.';
         this.nameOriginResult = null;
         this.api2Loading = false;
       }
