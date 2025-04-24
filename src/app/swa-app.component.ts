@@ -41,7 +41,7 @@ interface CountryInfo {
                 <mat-icon>cloud</mat-icon>
               </div>
               <mat-card-title>API #1</mat-card-title>
-              <mat-card-subtitle>API Wiadomości</mat-card-subtitle>
+              <mat-card-subtitle>API Wiadomość</mat-card-subtitle>
             </mat-card-header>
             <div class="api-description">
               <mat-icon class="description-icon">info</mat-icon>
@@ -102,7 +102,7 @@ interface CountryInfo {
                 <div class="country-list">
                   <h4>Prawdopodobne kraje pochodzenia:</h4>
                   <div *ngFor="let country of nameOriginResult.countries" class="country-item">
-                    <div class="country-flag">{{ getCountryFlag(country.countryId) }}</div>
+                    <div class="country-flag"><img [src]="getCountryFlagUrl(country.countryId)" alt="{{ getCountryName(country.countryId) }}"></div>
                     <div class="country-name">{{ getCountryName(country.countryId) }}</div>
                     <div class="country-probability">
                       <mat-progress-bar mode="determinate" [value]="country.probability * 100"></mat-progress-bar>
@@ -326,6 +326,7 @@ interface CountryInfo {
       font-size: 1.5em;
       min-width: 30px;
       text-align: center;
+      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
     }
     
     .country-name {
@@ -522,6 +523,17 @@ export class SwaAppComponent implements OnInit {
     'ZW': { code: 'ZW', name: 'Zimbabwe', flag: '🇿🇼' }
   };
 
+  // Flag URLs method that returns image URLs instead of emoji characters
+  public getCountryFlagUrl(countryCode: string): string {
+    return `https://flagcdn.com/24x18/${countryCode.toLowerCase()}.png`;
+  }
+
+  // Keep the original method for backwards compatibility
+  public getCountryFlag(countryCode: string): string {
+    const country = this.countryMap[countryCode];
+    return country ? country.flag : '🏳️';
+  }
+
   constructor(private httpClient: HttpClient) {}
   
   ngOnInit(): void {
@@ -573,10 +585,6 @@ export class SwaAppComponent implements OnInit {
         this.api2Loading = false;
       }
     });
-  }
-  
-  getCountryFlag(countryCode: string): string {
-    return this.countryMap[countryCode]?.flag || '🌍';
   }
   
   getCountryName(countryCode: string): string {
