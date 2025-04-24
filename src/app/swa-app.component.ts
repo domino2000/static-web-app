@@ -397,7 +397,7 @@ export class SwaAppComponent implements OnInit {
   public nameOriginResult: NameOriginResponse | null = null;
   
   // API 3 properties
-  public api3Message: string = 'Gotowe na twoją trzecią integrację API';
+  public api3Message: string = 'Gotowe na trzecią integrację API';
   public api3Loading: boolean = false;
   
   // Country mapping for display - translated to Polish
