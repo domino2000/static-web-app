@@ -25,7 +25,7 @@ interface CountryInfo {
   template: `
     <div class="app-container">
       <mat-toolbar color="primary" class="app-toolbar">
-        <span>Mój plac zabaw</span>
+        <span>Dominik Blicharz - Nr albumu: 68931</span>
         <span class="toolbar-spacer"></span>
         <button mat-icon-button aria-label="Odśwież wszystkie dane" (click)="refreshAllData()" class="hidden-button">
           <mat-icon>refresh</mat-icon>
@@ -152,7 +152,7 @@ interface CountryInfo {
       </div>
       
       <footer class="app-footer">
-        <p>&copy; {{ currentYear }} Panel API - Azure Static Web App</p>
+        <p>&copy; {{ currentYear }} Projekt - Azure Static Web App + Azure functions</p>
       </footer>
     </div>
   `,
